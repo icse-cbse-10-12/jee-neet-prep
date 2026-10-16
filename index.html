@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A192F">
+<meta name="description" content="Free JEE and NEET revision tools, chapter guides, formula notes and practice questions by ICSE MasterClass.">
+<title>JEE & NEET Study Hub | ICSE MasterClass</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container nav">
+<a class="brand" href="./"><span class="brand-mark">IM</span><span><b>ICSE MasterClass</b><small>JEE & NEET STUDY HUB</small></span></a>
+<nav aria-label="Main navigation"><a href="#subjects">Study tools</a><a href="#how">How to use</a></nav>
+</div></header>
+<main>
+<section class="hero container">
+<div class="eyebrow"><span class="pulse"></span> YOUR FREE REVISION SPACE</div>
+<h1>Learn clearly.<br><span>Practise confidently.</span></h1>
+<p class="hero-copy">Your study tools, chapter guides, quick revision notes and question practice — organised in one simple place for JEE and NEET preparation.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#subjects">Explore study tools <span aria-hidden="true">↘</span></a><span class="micro-note">Free static website · No sign-in required</span></div>
+<div class="hero-stats"><div><strong>5</strong><span>study tools</span></div><div><strong>4</strong><span>core subjects</span></div><div><strong>Self-paced</strong><span>practice</span></div></div>
+</section>
+<section class="section container" id="subjects">
+<div class="section-heading"><div><div class="eyebrow">PICK UP WHERE YOU NEED</div><h2>Your study dashboard</h2><p>Open a subject, find a topic, and practise at your own pace.</p></div>
+<label class="search-box"><span aria-hidden="true">⌕</span><input id="toolSearch" type="search" placeholder="Search a subject or tool…" aria-label="Search study tools"></label></div>
+<div class="filter-row" role="group" aria-label="Filter study tools">
+<button class="filter active" data-filter="all">All tools</button><button class="filter" data-filter="JEE">JEE</button><button class="filter" data-filter="NEET">NEET</button><button class="filter" data-filter="revision">Revision notes</button>
+</div>
+<div class="tool-grid" id="toolGrid">
+<a class="tool-card" data-tags="JEE NEET physics campaign revision" href="study.html?subject=physics">
+<div class="card-top"><span class="subject-icon physics">⚛</span><span class="tag">JEE + NEET</span></div><h3>Physics</h3><p>Chapter-wise study quests and practice sets for building concepts and checking understanding.</p><div class="card-foot"><span>Class 11–12 campaign</span><b>Explore Physics ↗</b></div></a>
+<a class="tool-card" data-tags="JEE NEET chemistry campaign revision" href="study.html?subject=chemistry-campaign">
+<div class="card-top"><span class="subject-icon chemistry">⚗</span><span class="tag">JEE + NEET</span></div><h3>Chemistry Campaign</h3><p>Structured chapter plans, study blocks and topic practice for Class 11 Chemistry.</p><div class="card-foot"><span>Chapter-wise learning</span><b>Explore Chemistry ↗</b></div></a>
+<a class="tool-card" data-tags="JEE NEET chemistry mcq question practice" href="study.html?subject=chemistry-mcqs">
+<div class="card-top"><span class="subject-icon practice">✳</span><span class="tag">QUESTION BANK</span></div><h3>Chemistry MCQ Practice</h3><p>Choose a Chemistry module, answer multiple-choice questions and read explanations.</p><div class="card-foot"><span>17 modules · 1,700 questions</span><b>Start practice ↗</b></div></a>
+<a class="tool-card" data-tags="JEE maths mathematics revision notes formulas" href="study.html?subject=maths">
+<div class="card-top"><span class="subject-icon maths">∑</span><span class="tag">JEE REVISION</span></div><h3>Maths Revision Vault</h3><p>Topic summaries, mind-map branches, formula notes and question practice in a single reader.</p><div class="card-foot"><span>30 modules · 3,000 questions</span><b>Open Maths Vault ↗</b></div></a>
+<a class="tool-card" data-tags="NEET biology campaign revision" href="study.html?subject=biology">
+<div class="card-top"><span class="subject-icon biology">⌬</span><span class="tag">NEET</span></div><h3>Biology</h3><p>Chapter plans, focused study quests and practice sets to guide your Biology revision.</p><div class="card-foot"><span>Class 11–12 campaign</span><b>Explore Biology ↗</b></div></a>
+<div class="empty-state" id="emptyState" hidden>No tools match that search. Try another keyword.</div>
+</div>
+</section>
+<section class="section how-section" id="how"><div class="container how-grid"><div><div class="eyebrow">SIMPLE BY DESIGN</div><h2>Make each study session count.</h2><p class="muted">Pick a chapter, review the key points, answer questions, then revisit anything you missed.</p></div><div class="steps"><article><span>01</span><div><b>Choose a tool</b><p>Start with the subject or revision format you need today.</p></div></article><article><span>02</span><div><b>Learn or practise</b><p>Use chapter plans, notes, formulas and MCQ practice in the same interface.</p></div></article><article><span>03</span><div><b>Review mistakes</b><p>Read explanations and retry questions. Your progress is saved in this browser when supported.</p></div></article></div></div></section>
+<section class="container disclaimer"><span aria-hidden="true">ⓘ</span><p><b>Study smart:</b> This is a free independent revision aid, not an official exam website. Always verify syllabus coverage and exam updates using the latest official JEE/NEET notices. Saved progress may stay only on this device/browser.</p></section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="./"><span class="brand-mark">IM</span><span><b>ICSE MasterClass</b><small>JEE & NEET STUDY HUB</small></span></a><span>Free learning tools · Built for self-paced revision</span></div></footer>
+<script>
+const search=document.querySelector('#toolSearch'), cards=[...document.querySelectorAll('.tool-card')], filters=[...document.querySelectorAll('.filter')], empty=document.querySelector('#emptyState');
+let active='all';
+function filterCards(){let count=0;const q=search.value.trim().toLowerCase();cards.forEach(card=>{const tags=card.dataset.tags.toLowerCase(),txt=card.innerText.toLowerCase();const passFilter=active==='all'||tags.includes(active.toLowerCase());const passSearch=!q||txt.includes(q)||tags.includes(q);card.hidden=!(passFilter&&passSearch);if(!card.hidden)count++;});empty.hidden=count>0;}
+search.addEventListener('input',filterCards);
+filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.filter;filters.forEach(b=>b.classList.toggle('active',b===btn));filterCards();}));
+</script>
+</body></html>
