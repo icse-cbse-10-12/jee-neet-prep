@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0A192F">
-<meta name="description" content="Free JEE and NEET revision tools, chapter guides, formula notes and practice questions by MasterClass.">
+<meta name="description" content="Free JEE and NEET study tools from MasterClass: chapter plans, revision notes, MCQ practice and a focus timer. No sign-in required.">
+<meta property="og:title" content="MasterClass | Free JEE & NEET Study Hub">
+<meta property="og:description" content="Learn clearly, practise confidently, and build a consistent study routine with free revision tools and a focus timer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://icse-cbse-10-12.github.io/jee-neet-prep/">
 <title>JEE & NEET Study Hub | MasterClass</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -15,11 +19,23 @@
 </div></header>
 <main>
 <section class="hero container">
+<div class="hero-main">
 <div class="eyebrow"><span class="pulse"></span> YOUR FREE REVISION SPACE</div>
 <h1>Learn clearly.<br><span>Practise confidently.</span></h1>
 <p class="hero-copy">Your study tools, chapter guides, quick revision notes and question practice — organised in one simple place for JEE and NEET preparation.</p>
 <div class="hero-actions"><a class="btn btn-primary" href="#subjects">Explore study tools <span aria-hidden="true">↘</span></a><span class="micro-note">Free static website · No sign-in required</span></div>
 <div class="hero-stats"><div><strong>5</strong><span>study tools</span></div><div><strong>4</strong><span>core subjects</span></div><div><strong>Self-paced</strong><span>practice</span></div></div>
+</div>
+<aside class="focus-card" aria-labelledby="focusTitle">
+<div class="focus-card-top"><span class="focus-icon" aria-hidden="true">◷</span><span class="focus-label">STUDY SPRINT</span><span class="focus-free">FREE</span></div>
+<h2 id="focusTitle">One task. Full focus.</h2>
+<p class="focus-copy">Take a small step. Keep distractions away until the timer ends.</p>
+<div class="timer-modes" role="group" aria-label="Timer duration"><button class="timer-mode active" type="button" data-minutes="25" aria-pressed="true">Focus · 25 min</button><button class="timer-mode" type="button" data-minutes="5" aria-pressed="false">Break · 5 min</button></div>
+<div class="timer-face" id="timerDisplay" role="timer" aria-label="Time remaining">25:00</div>
+<div class="timer-progress" aria-hidden="true"><span id="timerProgress"></span></div>
+<div class="timer-controls"><button class="btn btn-primary" id="timerStart" type="button">Start focus</button><button class="timer-reset" id="timerReset" type="button">Reset</button></div>
+<p class="timer-status" id="timerStatus" aria-live="polite">Ready when you are. You can pause any time.</p>
+</aside>
 </section>
 <section class="section container" id="subjects">
 <div class="section-heading"><div><div class="eyebrow">PICK UP WHERE YOU NEED</div><h2>Your study dashboard</h2><p>Open a subject, find a topic, and practise at your own pace.</p></div>
@@ -52,4 +68,5 @@ function filterCards(){let count=0;const q=search.value.trim().toLowerCase();car
 search.addEventListener('input',filterCards);
 filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.filter;filters.forEach(b=>b.classList.toggle('active',b===btn));filterCards();}));
 </script>
+<script src="assets/home.js" defer></script>
 </body></html>
