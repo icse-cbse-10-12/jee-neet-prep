@@ -17,6 +17,16 @@ $("#subjectTitle").textContent=subject.title;
 $("#subjectDesc").textContent=subject.desc;
 document.title=subject.title+" | ICSE MasterClass";
 const escapeHtml=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function renderMarkdown(value, inline=false){
+ const source=String(value??"").replace(/\\\\(?=[A-Za-z])/g,"\\");
+ if(!window.marked||!window.DOMPurify)return escapeHtml(source).replace(/\n/g,"<br>");
+ const html=inline?window.marked.parseInline(source,{breaks:true,gfm:true}):window.marked.parse(source,{breaks:true,gfm:true});
+ return window.DOMPurify.sanitize(html,{USE_PROFILES:{html:true}});
+}
+function typesetMath(root){
+ if(!window.MathJax?.typesetPromise)return;
+ window.MathJax.typesetPromise([root]).catch(()=>{});
+}
 function allQuestions(data){
  const rows=[];
  if(data.type==="campaign"){
@@ -100,7 +110,9 @@ function renderQuiz(){
   setStatus("Practice session complete");return;
  }
  setStatus(`${state.sourceTitle} · Answer carefully, then read the explanation.`);
- area.innerHTML=`<section class="quiz-panel"><div class="quiz-meta"><span>${escapeHtml(state.sourceTitle)}</span><span>Question ${state.quizIndex+1} of ${state.quiz.length}</span></div><div class="quiz-progress"><span style="width:${((state.quizIndex+(state.answered?1:0))/state.quiz.length)*100}%"></span></div><h2 class="quiz-question">${escapeHtml(q.question)}</h2><div class="option-list">${q.options.map((o,i)=>{let cls="option";if(state.answered&&i===q.answerIndex)cls+=" correct";else if(state.answered&&i===state.selected&&i!==q.answerIndex)cls+=" wrong";return `<button class="${cls}" data-option="${i}" ${state.answered?"disabled":""}><span class="letter">${String.fromCharCode(65+i)}</span><span>${escapeHtml(o)}</span></button>`}).join("")}</div>${state.answered?`<div class="explanation"><strong>${state.selected===q.answerIndex?"Correct! ✓":"Review this one"}</strong>${escapeHtml(q.explanation||"No explanation is provided for this question.")}</div>`:""}<div class="quiz-bottom"><span class="muted">${state.answered?`Score so far: ${state.score}/${state.attempted}`:"Select the best answer."}</span>${state.answered?'<button class="small-btn primary" id="nextQuestion">Next question →</button>':'<button class="small-btn" id="exitQuiz">Exit practice</button>'}</div></section>`;
+ window.MathJax?.typesetClear?.([area]);
+ area.innerHTML=`<section class="quiz-panel"><div class="quiz-meta"><span>${escapeHtml(state.sourceTitle)}</span><span>Question ${state.quizIndex+1} of ${state.quiz.length}</span></div><div class="quiz-progress"><span style="width:${((state.quizIndex+(state.answered?1:0))/state.quiz.length)*100}%"></span></div><div class="quiz-question">${renderMarkdown(q.question)}</div><div class="option-list">${q.options.map((o,i)=>{let cls="option";if(state.answered&&i===q.answerIndex)cls+=" correct";else if(state.answered&&i===state.selected&&i!==q.answerIndex)cls+=" wrong";return `<button class="${cls}" data-option="${i}" ${state.answered?"disabled":""}><span class="letter">${String.fromCharCode(65+i)}</span><span class="option-text">${renderMarkdown(o,true)}</span></button>`}).join("")}</div>${state.answered?`<div class="explanation"><strong>${state.selected===q.answerIndex?"Correct! ✓":"Review this one"}</strong><div class="explanation-body">${renderMarkdown(q.explanation||"No explanation is provided for this question.")}</div></div>`:""}<div class="quiz-bottom"><span class="muted">${state.answered?`Score so far: ${state.score}/${state.attempted}`:"Select the best answer."}</span>${state.answered?'<button class="small-btn primary" id="nextQuestion">Next question →</button>':'<button class="small-btn" id="exitQuiz">Exit practice</button>'}</div></section>`;
+ typesetMath(area);
  area.querySelectorAll("[data-option]").forEach(btn=>btn.addEventListener("click",()=>{if(state.answered)return;state.selected=Number(btn.dataset.option);state.answered=true;state.attempted++;if(state.selected===q.answerIndex)state.score++;renderQuiz()}));
  const next=$("#nextQuestion");if(next)next.addEventListener("click",()=>{state.quizIndex++;state.selected=null;state.answered=false;renderQuiz()});
  const exit=$("#exitQuiz");if(exit)exit.addEventListener("click",()=>{state.quiz=null;state.view="browse";document.querySelectorAll(".view-btn").forEach(x=>x.classList.toggle("active",x.dataset.view==="browse"));renderBrowse()});
