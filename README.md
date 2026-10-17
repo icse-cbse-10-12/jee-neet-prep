@@ -46,3 +46,15 @@ data/
 
 ## Test locally
 Because subject data is loaded with `fetch()`, open the folder through a local static server (for example, VS Code Live Server) rather than double-clicking `index.html` as a file. GitHub Pages works as a static host.
+
+## Automated checks
+Run these commands from the repository root with Node.js 20 or newer:
+
+```sh
+node --check assets/app.js
+node scripts/validate-data.mjs
+```
+
+GitHub Actions runs the same checks on pushes to `main`/maintenance branches and on pull requests. The validator checks all five JSON data files, expected group/question counts, question text, option arrays, answer indices, explanations, local page assets, and homepage subject routes. Duplicate answer options and repeated question text are reported as warnings so they can be reviewed against the original study sources instead of being silently rewritten.
+
+**Content review limitation:** The repository does not contain a complete, independently verifiable source citation for every question. Automated checks can catch structural errors, but they cannot certify the scientific correctness of every answer or guarantee that every item matches the latest official JEE/NEET syllabus.
