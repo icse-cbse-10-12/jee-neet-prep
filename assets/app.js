@@ -75,7 +75,7 @@ function renderBrowse(){
   area.querySelectorAll("[data-quest]").forEach(el=>el.addEventListener("change",()=>{const id=el.dataset.quest;el.checked?state.done.add(id):state.done.delete(id);saveDone();renderBrowse()}));
   area.querySelectorAll("[data-quiz-chapter]").forEach(btn=>btn.addEventListener("click",()=>{const ch=d.chapters.find(c=>String(c.id)===btn.dataset.quizChapter);const set=ch?.practiceSets[Number(btn.dataset.quizSet)];if(set)beginQuiz(set.questions,`${ch.title} — ${set.name}`)}));
  }else{
-  const items=d.modules.filter(m=>!state.query||[m.title,m.tag,m.group,m.priority,...(m.mindmap.branches||[]).flatMap(b=>[b.title,...b.items]),...m.notes.flatMap(n=>[n.heading,...n.points])].join(" ").toLowerCase().includes(state.query));
+  const items=d.modules.filter(m=>!state.query||[m.title,m.tag,m.group,m.priority,...(m.mindmap?.branches||[]).flatMap(b=>[b.title,...b.items]),...m.notes.flatMap(n=>[n.heading,...n.points])].join(" ").toLowerCase().includes(state.query));
   setStatus(`${items.length} of ${d.modules.length} modules · ${d.modules.reduce((n,m)=>n+m.questions.length,0).toLocaleString()} questions`);
   if(!items.length){area.innerHTML='<div class="empty-panel">No modules match your search. Try another keyword.</div>';return}
   area.innerHTML='<div class="content-grid">'+items.map(m=>`<article class="resource-card"><div class="resource-top"><span class="small-tag">${escapeHtml(m.group||m.tag||"MODULE")}</span><span class="small-tag">${m.questions.length.toLocaleString()} Q</span></div><h3>${escapeHtml(m.icon)} ${escapeHtml(m.title)}</h3><p>${escapeHtml(m.tag)} ${m.priority?"· "+escapeHtml(m.priority):""} ${m.weight?"· "+escapeHtml(m.weight):""}</p>
