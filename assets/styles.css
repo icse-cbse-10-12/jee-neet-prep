@@ -11,3 +11,6 @@
 
 /* Rich Markdown and LaTeX inside practice questions */
 .quiz-question > :first-child{margin-top:0}.quiz-question > :last-child{margin-bottom:0}.quiz-question h1,.quiz-question h2,.quiz-question h3{font:inherit;letter-spacing:inherit;line-height:inherit;margin:0 0 10px}.quiz-question p{margin:0 0 10px}.quiz-question p:last-child{margin-bottom:0}.option .option-text p{margin:0}.option .option-text p+p{margin-top:6px}.option .option-text ul,.option .option-text ol{margin:6px 0;padding-left:20px}.explanation-body p{margin:6px 0 0}.explanation-body p:first-child{margin-top:0}
+
+/* Keep long MathJax equations usable on narrow screens. */
+.quiz-question mjx-container[display="true"],.option-text mjx-container[display="true"],.explanation-body mjx-container[display="true"]{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:2px 0}

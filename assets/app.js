@@ -23,9 +23,16 @@ function renderMarkdown(value, inline=false){
  const html=inline?window.marked.parseInline(source,{breaks:true,gfm:true}):window.marked.parse(source,{breaks:true,gfm:true});
  return window.DOMPurify.sanitize(html,{USE_PROFILES:{html:true}});
 }
-function typesetMath(root){
- if(!window.MathJax?.typesetPromise)return;
- window.MathJax.typesetPromise([root]).catch(()=>{});
+async function typesetMath(root){
+ const mathJax=window.MathJax;
+ if(!mathJax||!root)return;
+ try{
+  // MathJax loads asynchronously; wait for its startup before typesetting dynamic content.
+  if(mathJax.startup?.promise)await mathJax.startup.promise;
+  if(typeof mathJax.typesetPromise==='function')await mathJax.typesetPromise([root]);
+ }catch(error){
+  console.warn('MathJax could not typeset this practice question.',error);
+ }
 }
 function allQuestions(data){
  const rows=[];

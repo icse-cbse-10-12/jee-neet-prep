@@ -1,0 +1,25 @@
+name: Validate study hub
+
+on:
+  push:
+    branches: [main, 'fix/**', 'test/**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript syntax
+        run: node --check assets/app.js
+      - name: Validate data, page links, and question structure
+        run: node scripts/validate-data.mjs
