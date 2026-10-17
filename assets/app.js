@@ -10,12 +10,12 @@ const params=new URLSearchParams(location.search);
 const key=params.get("subject")||"physics";
 const subject=SUBJECTS[key]||SUBJECTS.physics;
 const state={data:null,view:"browse",query:"",quiz:null,quizIndex:0,selected:null,answered:false,score:0,attempted:0,questionPool:[],sourceTitle:"Practice",done:new Set()};
-const doneKey="icse_masterclass_done_v2_"+key;
-try{state.done=new Set(JSON.parse(localStorage.getItem(doneKey)||"[]"))}catch{}
+const doneKey="masterclass_done_v3_"+key;
+try{const saved=localStorage.getItem(doneKey)??localStorage.getItem("icse_masterclass_done_v2_"+key)??"[]";state.done=new Set(JSON.parse(saved));if(!localStorage.getItem(doneKey))localStorage.setItem(doneKey,saved)}catch{}
 $("#subjectTag").textContent=subject.tag;
 $("#subjectTitle").textContent=subject.title;
 $("#subjectDesc").textContent=subject.desc;
-document.title=subject.title+" | ICSE MasterClass";
+document.title=subject.title+" | MasterClass";
 const escapeHtml=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function renderMarkdown(value, inline=false){
  const source=String(value??"").replace(/\\\\(?=[A-Za-z])/g,"\\");

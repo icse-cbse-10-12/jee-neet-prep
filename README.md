@@ -2,7 +2,7 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=2800&pause=900&color=F59E0B&center=true&vCenter=true&width=850&lines=JEE+%26+NEET+Study+Hub;Learn.+Practice.+Revise.+Repeat.;Free+student-focused+study+tools" alt="Animated typing banner: JEE and NEET Study Hub" />
 
-<p><strong>A free, responsive study hub by ICSE MasterClass</strong></p>
+<p><strong>A free, responsive study hub by MasterClass</strong></p>
 
 <p>
   <a href="https://icse-cbse-10-12.github.io/jee-neet-prep/"><img alt="Live website" src="https://img.shields.io/badge/Live%20Website-Visit%20Now-0A192F?style=for-the-badge&logo=githubpages&logoColor=white"></a>
@@ -97,6 +97,11 @@ Questions and revision points are organised from supplied study resources and ma
 
 The MIT License in this repository applies to the project's original code and other material owned by the repository copyright holder. Third-party educational questions, module pages, logos, and other source material may be subject to separate copyright or licence terms; the MIT License does **not** grant rights to redistribute them. Obtain permission before republishing third-party copyrighted content.
 
+## 🌐 Connect with MasterClass
+
+- **Telegram community:** https://t.me/masterclass11nd12
+- **YouTube channel:** https://www.youtube.com/@MasterClass11and12
+
 ## 🤝 Contributing
 
 Suggestions and fixes are welcome. Please include the affected file or topic and, for educational corrections, a reliable source or worked solution. Run the validation commands before submitting a pull request.
@@ -109,7 +114,7 @@ The project's original code is licensed under the **MIT License** — see [LICEN
 
 <div align="center">
 
-Made for learners by **ICSE MasterClass** 📘
+Made for learners by **MasterClass** 📘
 
 [Study Hub](https://icse-cbse-10-12.github.io/jee-neet-prep/) ·
 [Report an issue](https://github.com/icse-cbse-10-12/jee-neet-prep/issues)
