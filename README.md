@@ -58,3 +58,6 @@ node scripts/validate-data.mjs
 GitHub Actions runs the same checks on pushes to `main`/maintenance branches and on pull requests. The validator checks all five JSON data files, expected group/question counts, question text, option arrays, answer indices, explanations, local page assets, and homepage subject routes. Duplicate answer options and repeated question text are reported as warnings so they can be reviewed against the original study sources instead of being silently rewritten.
 
 **Content review limitation:** The repository does not contain a complete, independently verifiable source citation for every question. Automated checks can catch structural errors, but they cannot certify the scientific correctness of every answer or guarantee that every item matches the latest official JEE/NEET syllabus.
+
+## Maths question-bank update (2026-10-17)
+The Trigonometric Functions, Matrices, Determinants, and Integrals modules were rebuilt to remove repeated prompts and duplicate answer choices within those modules. Each now contains 100 distinct practice prompts with four distinct choices. These are generated practice questions based on standard rules and identities, not source-attributed official JEE/NEET previous-year questions; expert review of every item is still recommended.
