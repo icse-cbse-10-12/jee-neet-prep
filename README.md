@@ -1,63 +1,117 @@
-# ICSE MasterClass — JEE & NEET Study Hub
+<div align="center">
 
-A newly built, free static website that reorganises study information from the provided HTML resources into structured subject data and a shared responsive study interface. It does **not** serve the original HTML pages as the website's user interface.
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=2800&pause=900&color=F59E0B&center=true&vCenter=true&width=850&lines=JEE+%26+NEET+Study+Hub;Learn.+Practice.+Revise.+Repeat.;Free+student-focused+study+tools" alt="Animated typing banner: JEE and NEET Study Hub" />
 
-## Features
-- One responsive home page for five study resources.
-- Search and filters on the homepage and subject pages.
-- Chapter-wise campaign plans with tickable study tasks.
-- Revision notes and concept-map sections for modules that contain them.
-- MCQ practice with answer checking, explanations, scores and mixed quick practice.
-- Browser-local completion tracking; no login, server, API key or paid service required.
-- Physics progress uses its own storage namespace, separate from Chemistry.
-- Keyboard focus states and reduced-motion support.
+<p><strong>A free, responsive study hub by ICSE MasterClass</strong></p>
 
-## Content organisation
-- `data/biology.json` — 32 chapters, campaign tasks and 448 embedded practice questions.
-- `data/chemistry-campaign.json` — 10 chapters, campaign tasks and 280 embedded practice questions.
-- `data/chemistry-mcqs.json` — 17 modules and 1,700 MCQs.
-- `data/maths.json` — 30 modules, revision material and 3,000 questions.
-- `data/physics.json` — 28 chapters, campaign tasks and 498 embedded practice questions.
+<p>
+  <a href="https://icse-cbse-10-12.github.io/jee-neet-prep/"><img alt="Live website" src="https://img.shields.io/badge/Live%20Website-Visit%20Now-0A192F?style=for-the-badge&logo=githubpages&logoColor=white"></a>
+  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge">
+  <img alt="Static site" src="https://img.shields.io/badge/Hosting-Static%20%7C%20GitHub%20Pages-2563EB?style=for-the-badge">
+</p>
 
-The question bank and revision points are structured from the supplied resources; the interface, navigation, interaction model and data schema are newly built. Content accuracy and full official syllabus coverage have not been independently certified. Check current official JEE/NEET syllabi and review question answers before relying on them for exam preparation.
+<p><em>One place to organise study resources, practise questions, and track revision.</em></p>
 
-## Publish on GitHub Pages (free)
-1. Download and extract this ZIP.
-2. In the repository `icse-cbse-10-12/jee-neet-prep`, upload **the contents of this folder** into the repository root (not the enclosing folder itself).
-3. Commit the new files to the `main` branch.
-4. Open **Settings → Pages**. Under **Build and deployment**, select **Deploy from a branch**, branch `main`, folder `/(root)`, and save.
-5. When the Pages deployment finishes, open: https://icse-cbse-10-12.github.io/jee-neet-prep/
+</div>
 
-The expected structure is:
-```
-index.html
-study.html
-README.md
-assets/
-  app.js
-  styles.css
-data/
-  biology.json
-  chemistry-campaign.json
-  chemistry-mcqs.json
-  maths.json
-  physics.json
-```
+---
 
-## Test locally
-Because subject data is loaded with `fetch()`, open the folder through a local static server (for example, VS Code Live Server) rather than double-clicking `index.html` as a file. GitHub Pages works as a static host.
+## ✨ Features
 
-## Automated checks
-Run these commands from the repository root with Node.js 20 or newer:
+- 📚 **Subject-wise study resources** with a shared responsive interface.
+- 🔎 **Search and filters** on the homepage and subject pages.
+- 🗓️ **Chapter-wise campaign plans** with tickable study tasks.
+- 🧠 **Revision notes and concept maps** where available in the data.
+- ✅ **MCQ practice** with answer checking, explanations, scores, and mixed quick practice.
+- 💾 **Local progress tracking** in the browser — no account or backend required.
+- 📱 **Responsive layout** for desktop and mobile screens.
+- ♿ **Accessibility-minded details**, including keyboard focus states and reduced-motion support.
 
-```sh
+## 🌐 Try it
+
+**[Open the live JEE & NEET Study Hub →](https://icse-cbse-10-12.github.io/jee-neet-prep/)**
+
+## 📦 Content overview
+
+| Data file | Included content |
+|---|---|
+| data/biology.json | 32 chapters, campaign tasks, and 448 embedded practice questions |
+| data/chemistry-campaign.json | 10 chapters, campaign tasks, and 280 embedded practice questions |
+| data/chemistry-mcqs.json | 17 modules and 1,700 MCQs |
+| data/maths.json | 30 modules, revision material, and 3,000 questions |
+| data/physics.json | 28 chapters, campaign tasks, and 498 embedded practice questions |
+
+The interface, navigation, interaction model, and data schema are newly built to organise the supplied study resources. Availability of notes or concept maps varies by module.
+
+## 🚀 Run locally
+
+You need **Node.js 20 or newer** for the repository's validation commands. To preview the static site, use any local static server.
+
+1. Clone or download this repository.
+   ```bash
+   git clone https://github.com/icse-cbse-10-12/jee-neet-prep.git
+   cd jee-neet-prep
+   ```
+2. Start a local static server, for example with the VS Code **Live Server** extension.
+3. Open the local URL shown by the server.
+
+> Do not open index.html directly as a file:// URL: the site loads its subject data with fetch(), which needs a local server. GitHub Pages serves it correctly as a static website.
+
+## 🧪 Validate the project
+
+From the repository root, run:
+
+```bash
 node --check assets/app.js
 node scripts/validate-data.mjs
 ```
 
-GitHub Actions runs the same checks on pushes to `main`/maintenance branches and on pull requests. The validator checks all five JSON data files, expected group/question counts, question text, option arrays, answer indices, explanations, local page assets, and homepage subject routes. Duplicate answer options and repeated question text are reported as warnings so they can be reviewed against the original study sources instead of being silently rewritten.
+GitHub Actions also runs checks on pushes and pull requests. The data validator checks JSON structure, expected group/question counts, question text, option arrays, answer indices, explanations, local page assets, and homepage subject routes. Duplicate prompts and answer choices may be reported for review.
 
-**Content review limitation:** The repository does not contain a complete, independently verifiable source citation for every question. Automated checks can catch structural errors, but they cannot certify the scientific correctness of every answer or guarantee that every item matches the latest official JEE/NEET syllabus.
+## 🗂️ Project structure
 
-## Maths question-bank update (2026-10-17)
-The Trigonometric Functions, Matrices, Determinants, and Integrals modules were rebuilt to remove repeated prompts and duplicate answer choices within those modules. Each now contains 100 distinct practice prompts with four distinct choices. These are generated practice questions based on standard rules and identities, not source-attributed official JEE/NEET previous-year questions; expert review of every item is still recommended.
+```text
+.
+├── index.html
+├── study.html
+├── assets/
+│   ├── app.js
+│   └── styles.css
+├── data/
+│   ├── biology.json
+│   ├── chemistry-campaign.json
+│   ├── chemistry-mcqs.json
+│   ├── maths.json
+│   └── physics.json
+├── scripts/
+│   └── validate-data.mjs
+├── README.md
+└── LICENSE
+```
+
+## ⚠️ Academic accuracy and content rights
+
+This is a study aid, not an official JEE/NEET service. **Content accuracy and complete coverage of the latest official syllabi have not been independently certified.** Automated checks can detect structural problems but cannot prove that every scientific explanation, calculation, or answer is correct. Check current official syllabi and verify answers before relying on them for exam preparation.
+
+Questions and revision points are organised from supplied study resources and may include generated practice questions. Unless an item is explicitly identified and verified as a previous-year question, do not treat it as an official PYQ.
+
+The MIT License in this repository applies to the project's original code and other material owned by the repository copyright holder. Third-party educational questions, module pages, logos, and other source material may be subject to separate copyright or licence terms; the MIT License does **not** grant rights to redistribute them. Obtain permission before republishing third-party copyrighted content.
+
+## 🤝 Contributing
+
+Suggestions and fixes are welcome. Please include the affected file or topic and, for educational corrections, a reliable source or worked solution. Run the validation commands before submitting a pull request.
+
+## 📄 License
+
+The project's original code is licensed under the **MIT License** — see [LICENSE](LICENSE). Third-party materials remain subject to their own terms.
+
+---
+
+<div align="center">
+
+Made for learners by **ICSE MasterClass** 📘
+
+[Study Hub](https://icse-cbse-10-12.github.io/jee-neet-prep/) ·
+[Report an issue](https://github.com/icse-cbse-10-12/jee-neet-prep/issues)
+
+</div>
